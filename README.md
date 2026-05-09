@@ -53,10 +53,13 @@ Flash alice.uf2 to the Server Pico and bob.uf2 to the Client Pico.
 
 Our implementation was profiled over 10,000 iterations to ensure statistical precision.
 
-Operation,Execution Time (ms),CPU Clock Cycles
-Key Generation,8.10 ms,"1,215,225"
-Encapsulation,7.40 ms,"1,111,740"
-Decapsulation,10.10 ms,"1,522,170"
+Operation         Execution Time (ms)         CPU Clock Cycles
+
+Key Generation         8.10 ms                 1,215,225
+
+Encapsulation          7.40 ms                 1,111,740
+
+Decapsulation          10.10 ms                1,522,170
 
 🛡️ Advanced Security Testing
 For researchers interested in verifying the Side-Channel resistance, we have provided separate Testing Files ,the code is not enabled by default to keep the production code clean.
