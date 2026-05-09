@@ -3,11 +3,13 @@ Resource-Efficient ML-KEM-512 (Kyber-512) implementation on Raspberry Pi Pico 2 
 This repository contains a high-performance, bare-metal implementation of the ML-KEM-512 (Kyber-512) Post-Quantum Cryptographic (PQC) algorithm, specifically optimized for the Raspberry Pi Pico 2 W (ARM Cortex-M33).The project demonstrates a secure, quantum-resistant key exchange between two networked IoT nodes (Alice and Bob) over Wi-Fi, utilizing a custom DMA-based power masking defense to mitigate Side-Channel Attacks (SCA).
 
 🚀 Key Features
+
 Quantum-Resistant: Full implementation of ML-KEM-512 (Standardized by NIST FIPS 203).
 Networked IoT: Real-time key exchange via TCP/IP using the lwIP stack and cyw43 Wi-Fi firmware.
 Physical Security: Integrated DMA-based noise generation to mask CPU power signatures during sensitive polynomial operations.
 
 📂 File Structure
+
 main(alice).c : TCP Server role. Handles KeyGen, sends Public Key, and receives Ciphertext.
 main(bob).c :TCP Client role. Receives Public Key, performs Encapsulation, and sends Ciphertext.
 kyber.c /.h :Core ML-KEM-512 logic (KeyGen, Encaps, Decaps).
@@ -17,6 +19,7 @@ dmautils.c /.h : Hardware-level DMA configurations for power masking.
 mathutils.c /.h : Mathematical helper functions.
 fips202.c /.h : SHA-3 and SHAKE functions required for Kyber hashing and pseudorandomness.
 lwipopts.h : Optimized configuration for the LwIP network stack on the RP2350.
+
 
 🛠️ Hardware: 2x Raspberry Pi Pico 2 W.
 🛠️ Software: Raspberry Pi Pico SDK.
