@@ -53,10 +53,10 @@ Flash alice.uf2 to the Server Pico and bob.uf2 to the Client Pico.
 
 Our implementation was profiled over 10,000 iterations to ensure statistical precision.
 
-              Operation Execution Time (ms)  CPU Clock Cycles
-Key Generation         8.10 ms                  1,215,225
-Encapsulation          7.40 ms                  1,111,740
-Decapsulation          10.10 ms                 1,522,170
+Operation,Execution Time (ms),CPU Clock Cycles
+Key Generation,8.10 ms,"1,215,225"
+Encapsulation,7.40 ms,"1,111,740"
+Decapsulation,10.10 ms,"1,522,170"
 
 🛡️ Advanced Security Testing
 For researchers interested in verifying the Side-Channel resistance, we have provided separate Testing Files ,the code is not enabled by default to keep the production code clean.
@@ -68,7 +68,9 @@ This module simulates Power Analysis protection using DMA-based noise injection.
 Purpose: Evaluates how background DMA bus traffic can mask the CPU's power signature during secret key processing.
 
 How to enable:
+
      1.  Copy the helper functions from dmachanges.c into main.c
+     
      2.  Call run_dma_power_masking_test() inside the main loop after keygen.
   
 3. Differential Fault Analysis (DFA) (dfa.c)
@@ -78,7 +80,9 @@ This test simulates hardware "glitching" or bit-flips in the secret key stored i
 Purpose: Measures the Hamming Distance between a legitimate shared secret and a secret generated while the private key is under a fault attack.
 
 How to enable:
+
      1.  Paste the DFA logic into Alice's main.c
+     
      2.  Invoke run_dfa_test(ct_buffer) after the ciphertext has been received but before the final decapsulation.
 
 5. TVLA (Test Vector Leakage Assessment)
@@ -88,11 +92,17 @@ This follows the "Welch’s T-Test" methodology to determine if the device's pow
 Bob:  Configured as a remote attacker utilizing the Wi-Fi TCP/IP layer.  An automated high-speed loop of attacks was run by the remote adversary. This included 100 valid Class A ciphertexts and 100 corrupted Class B ciphertexts transmitted to the RP2350 server. The adversary records the Round-Trip Time (RTT) of each interaction using the onboard hardware timer.
 
 How to enable:
+
    1.Replace main files of both client and server with the given files.
 
 Stability Benchmarking (timeloopscode.txt)
+
 Used to generate the data for the 10,000-iteration stability graphs.
+
 Purpose: Records high-resolution timing data to verify the constant-time nature of the implementation.
+
 How to enable: 
+
     1.  Replace the standard keygen or decapsulate calls in main.c with these timed loops.
+    
     2.  The output is formatted as a raw CSV-ready stream for Serial Plotters.
