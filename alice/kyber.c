@@ -218,7 +218,7 @@ void decapsulate(kyber_keypair *kp, uint8_t *ct, uint8_t *shared_key) {
     int16_t v[N];
     for(int i=0; i<32; i++) shared_key[i] = 0;
 
-   // NEW: UNPACK AND DECOMPRESS FROM CIPHERTEXT (ct)
+   // UNPACK AND DECOMPRESS FROM CIPHERTEXT (ct)
     // ====================================================================
     int offset = 0;
 
@@ -338,7 +338,7 @@ void decapsulate(kyber_keypair *kp, uint8_t *ct, uint8_t *shared_key) {
     // SECURE CONSTANT-TIME PATCH
     check_failed = constant_time_cmp(ct, ct_prime, 768);
 //====================================================================
-    // D. NEW: IMPLICIT REJECTION & DOMAIN SEPARATION
+    // D. IMPLICIT REJECTION & DOMAIN SEPARATION
     // ====================================================================
     // 1. Hash the 768-byte Ciphertext directly!
     uint8_t hashed_ct[32];
